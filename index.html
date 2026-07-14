@@ -3,125 +3,861 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aída Rogell | Educadora de Inglés</title>
+    <title>Aída Rogell Flores | English Educator</title>
+    <!-- Google Fonts: Playfair Display for headers, Inter for UI/Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons for clean minimalist vectors -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        background: '#FDFBF7',
-                        navy: '#1A2B48',
-                        mustard: '#E3B04B',
+                        hueso: {
+                            DEFAULT: '#FAF7F2', // Off-white principal
+                            claro: '#FFFFFF',
+                            oscuro: '#F3EDE2'
+                        },
+                        cafe: {
+                            claro: '#8C7A6B',
+                            DEFAULT: '#4A3B32', // Café principal sofisticado
+                            oscuro: '#2D221C'   // Café casi negro para legibilidad suprema
+                        },
+                        mostaza: {
+                            claro: '#F5D061',
+                            DEFAULT: '#D99B26', // Amarillo mostaza equilibrado
+                            oscuro: '#B57E1A'
+                        }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #FDFBF7; }
-        .hero-clip { clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%); }
+        /* Custom smooth scrollbar & selection */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8C7A6B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4A3B32;
+        }
+        ::selection {
+            background-color: #F5D061;
+            color: #2D221C;
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
     </style>
 </head>
-<body class="text-navy font-sans antialiased">
+<body class="bg-hueso text-cafe-oscuro font-sans antialiased selection:bg-mostaza/30 overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 bg-[#FDFBF7]/90 backdrop-blur-sm py-6">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tight">Aída Rogell</h1>
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#sobre-mi" class="hover:text-mustard transition">Sobre mí</a>
-                <a href="#servicios" class="hover:text-mustard transition">Servicios</a>
-                <a href="#contacto" class="hover:text-mustard transition">Contacto</a>
-            </div>
-            <a href="#contacto" class="bg-mustard text-white px-6 py-2 rounded-full hover:bg-navy transition duration-300">Agendar Clase</a>
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full bg-hueso/90 backdrop-blur-md z-50 border-b border-cafe/10 transition-all duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+            <!-- Brand Logo / Name -->
+            <a href="#" class="group flex flex-col focus:outline-none">
+                <span class="font-serif text-xl md:text-2xl tracking-wide text-cafe-oscuro group-hover:text-mostaza transition-colors duration-300">
+                    Aída Rogell Flores
+                </span>
+                <span class="text-[10px] uppercase tracking-widest text-cafe-claro -mt-1 font-semibold">
+                    English Educator
+                </span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-10 text-sm tracking-wide font-medium">
+                <a href="#sobre-mi" class="text-cafe hover:text-mostaza transition-colors duration-300">Sobre mí</a>
+                <a href="#servicios" class="text-cafe hover:text-mostaza transition-colors duration-300">Servicios</a>
+                <a href="#portafolio" class="text-cafe hover:text-mostaza transition-colors duration-300">Portafolio</a>
+                <a href="#testimonios" class="text-cafe hover:text-mostaza transition-colors duration-300">Testimonios</a>
+                <a href="#contacto" class="bg-cafe text-hueso px-6 py-3 rounded-full hover:bg-mostaza hover:text-cafe-oscuro transition-all duration-300 transform active:scale-95 shadow-sm">
+                    Agendar Sesión
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="md:hidden text-cafe-oscuro p-2 focus:outline-none" id="mobile-menu-btn" aria-label="Abrir menú">
+                <i data-lucide="menu" class="w-6 h-6 transition-transform duration-300" id="menu-icon"></i>
+            </button>
         </div>
-    </nav>
 
-    <section id="hero" class="pt-32 pb-20 md:pt-48 md:pb-32 px-6">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-1/2">
-                <span class="text-mustard font-semibold uppercase tracking-widest text-sm">Educadora de Inglés</span>
-                <h2 class="text-5xl md:text-7xl font-bold mt-4 mb-6 leading-tight">Domina el inglés con fluidez y confianza.</h2>
-                <p class="text-lg text-navy/70 mb-8 max-w-lg">Metodología personalizada para ejecutivos y estudiantes que buscan resultados reales. Tu camino hacia el éxito comienza aquí.</p>
-                <div class="flex gap-4">
-                    <a href="#servicios" class="bg-navy text-white px-8 py-4 rounded-lg hover:bg-mustard transition">Ver servicios</a>
+        <!-- Mobile Navigation Overlay -->
+        <div class="hidden md:hidden bg-hueso border-b border-cafe/10 absolute top-20 left-0 w-full px-8 py-8 shadow-lg transition-all duration-300 ease-in-out" id="mobile-menu">
+            <nav class="flex flex-col space-y-6 text-lg font-medium text-cafe-oscuro">
+                <a href="#sobre-mi" class="mobile-link border-b border-cafe/5 pb-2">Sobre mí</a>
+                <a href="#servicios" class="mobile-link border-b border-cafe/5 pb-2">Servicios</a>
+                <a href="#portafolio" class="mobile-link border-b border-cafe/5 pb-2">Portafolio</a>
+                <a href="#testimonios" class="mobile-link border-b border-cafe/5 pb-2">Testimonios</a>
+                <a href="#contacto" class="mobile-link bg-mostaza text-cafe-oscuro text-center py-4 rounded-xl font-semibold shadow-md active:bg-mostaza-oscuro">
+                    Agendar Sesión
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-gradient-to-b from-hueso to-hueso-oscuro">
+        <!-- Minimal Geometric Accents -->
+        <div class="absolute right-0 top-0 w-1/3 h-full bg-[#F3EDE2] opacity-50 rounded-l-[100px] pointer-events-none -z-10 hidden lg:block"></div>
+        <div class="absolute top-1/4 left-10 w-4 h-4 rounded-full bg-mostaza/40 animate-ping"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Left Editorial Text Content -->
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-8 z-10">
+                <div class="inline-flex items-center space-x-3 bg-cafe-claro/10 text-cafe px-4 py-2 rounded-full w-fit">
+                    <span class="w-2 h-2 rounded-full bg-mostaza animate-pulse"></span>
+                    <span class="text-xs uppercase tracking-widest font-semibold">Educación Lingüística Premium</span>
+                </div>
+                
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] text-cafe-oscuro font-light">
+                    Redefine tu <br>
+                    <span class="font-normal italic text-mostaza">inglés</span> profesional.
+                </h1>
+                
+                <p class="text-cafe text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                    Metodología de alto rendimiento diseñada para líderes, profesionales y mentes inquietas que buscan fluidez auténtica sin rodeos mecánicos.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#contacto" class="group inline-flex items-center justify-center space-x-2 bg-mostaza hover:bg-mostaza-oscuro text-cafe-oscuro font-medium px-8 py-4 rounded-full transition-all duration-300 transform hover:translate-y-[-2px] shadow-lg shadow-mostaza/20 active:translate-y-0">
+                        <span>Iniciar mentoría</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                    <a href="#servicios" class="inline-flex items-center justify-center bg-transparent border border-cafe/30 hover:border-cafe text-cafe-oscuro font-medium px-8 py-4 rounded-full transition-all duration-300 transform hover:translate-y-[-2px] active:translate-y-0">
+                        Ver programas
+                    </a>
+                </div>
+
+                <!-- Simple Stats / Highlights -->
+                <div class="grid grid-cols-3 gap-6 pt-10 border-t border-cafe/10 max-w-md">
+                    <div>
+                        <p class="font-serif text-3xl text-cafe font-semibold">12+</p>
+                        <p class="text-xs uppercase tracking-wider text-cafe-claro font-semibold mt-1">Años de Exp.</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-3xl text-cafe font-semibold">500+</p>
+                        <p class="text-xs uppercase tracking-wider text-cafe-claro font-semibold mt-1">Alumnos</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-3xl text-cafe font-semibold">98%</p>
+                        <p class="text-xs uppercase tracking-wider text-cafe-claro font-semibold mt-1">Éxito Real</p>
+                    </div>
                 </div>
             </div>
-            <div class="md:w-1/2 w-full h-[400px] bg-navy/10 rounded-2xl flex items-center justify-center">
-                <span class="text-navy/30 text-lg italic">Imagen o Elemento Visual</span>
+
+            <!-- Right Asymmetric Image Showcase -->
+            <div class="lg:col-span-5 relative flex justify-center lg:justify-end">
+                <div class="relative w-80 h-96 md:w-[400px] md:h-[480px] rounded-2xl overflow-hidden shadow-2xl bg-cafe group">
+                    <!-- Standard clean vector representing education with style -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-cafe-oscuro via-cafe-oscuro/40 to-transparent flex flex-col justify-end p-8 text-hueso z-10">
+                        <span class="text-xs uppercase tracking-widest text-mostaza font-semibold mb-1">Tu mentora de confianza</span>
+                        <h3 class="font-serif text-2xl font-light">Aída Rogell Flores</h3>
+                        <p class="text-sm text-hueso/80 font-light mt-1">Especialista en bilingüismo y oratoria profesional.</p>
+                    </div>
+                    <!-- Minimal aesthetic vector drawing background (no image) -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-mostaza/20 via-cafe/10 to-cafe-oscuro/80 flex items-center justify-center">
+                        <div class="text-center p-6 text-hueso">
+                            <i data-lucide="book-open" class="w-16 h-16 mx-auto stroke-1 text-mostaza opacity-70 mb-4 animate-pulse"></i>
+                            <span class="block font-serif text-3xl italic font-light tracking-wide">English Coach</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Interactive Decorative Badge -->
+                <div class="absolute -bottom-6 -left-6 bg-hueso-claro p-5 rounded-2xl shadow-xl border border-cafe/5 max-w-[200px] hidden md:block animate-bounce" style="animation-duration: 6s;">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-2 bg-mostaza/20 rounded-lg text-mostaza">
+                            <i data-lucide="award" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-cafe-oscuro">Certificación C2</p>
+                            <p class="text-[10px] text-cafe-claro">Oxford & Cambridge standards</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="sobre-mi" class="py-20 px-6">
-        <div class="max-w-3xl mx-auto text-center">
-            <h3 class="text-sm font-semibold text-mustard uppercase tracking-widest mb-4">Sobre Mí</h3>
-            <h4 class="text-4xl font-bold mb-8">Conecta, Aprende, Crece.</h4>
-            <p class="text-lg text-navy/80 leading-relaxed">
-                Con más de una década de experiencia enseñando inglés, mi enfoque va más allá de la gramática. Creo en la inmersión, en perder el miedo al hablar y en personalizar cada lección según tus objetivos profesionales y personales. No solo aprendes inglés, aprendes a comunicarte con el mundo.
-            </p>
-        </div>
-    </section>
+    <!-- Sobre Mí Section -->
+    <section id="sobre-mi" class="py-24 md:py-32 bg-hueso-claro fade-in-section">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+                <!-- Left Title / Pitch -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs uppercase tracking-widest text-mostaza font-semibold">Mi Filosofía</span>
+                    <h2 class="font-serif text-4xl md:text-5xl leading-tight text-cafe-oscuro">
+                        Un puente de comunicación global, no solo un aula de gramática.
+                    </h2>
+                    <div class="w-20 h-[2px] bg-mostaza"></div>
+                </div>
 
-    <section id="servicios" class="py-20 px-6 bg-[#FDFBF7]">
-        <div class="max-w-6xl mx-auto">
-            <h3 class="text-center text-4xl font-bold mb-16">Servicios Personalizados</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 border border-navy/10 rounded-2xl hover:border-mustard transition duration-300">
-                    <div class="w-12 h-12 bg-mustard/20 rounded-lg mb-6"></div>
-                    <h5 class="text-xl font-bold mb-4">Inglés de Negocios</h5>
-                    <p class="text-navy/70">Optimiza tus presentaciones, correos y negociaciones en un entorno profesional.</p>
-                </div>
-                <div class="p-8 border border-navy/10 rounded-2xl hover:border-mustard transition duration-300">
-                    <div class="w-12 h-12 bg-mustard/20 rounded-lg mb-6"></div>
-                    <h5 class="text-xl font-bold mb-4">Preparación Exámenes</h5>
-                    <p class="text-navy/70">Estrategias efectivas para certificaciones TOEFL, IELTS o Cambridge.</p>
-                </div>
-                <div class="p-8 border border-navy/10 rounded-2xl hover:border-mustard transition duration-300">
-                    <div class="w-12 h-12 bg-mustard/20 rounded-lg mb-6"></div>
-                    <h5 class="text-xl font-bold mb-4">Inglés Conversacional</h5>
-                    <p class="text-navy/70">Pierde el miedo y gana seguridad al hablar en situaciones de la vida diaria.</p>
+                <!-- Right Description & Features -->
+                <div class="lg:col-span-7 space-y-8 text-cafe text-base md:text-lg leading-relaxed font-light">
+                    <p>
+                        Hola, soy <strong class="text-cafe-oscuro font-medium">Aída Rogell Flores</strong>. A lo largo de mi carrera como educadora, he comprendido que hablar inglés con seguridad no es cuestión de memorizar interminables listas de verbos, sino de construir tu propia voz dentro de un idioma diferente.
+                    </p>
+                    <p>
+                        Mi enfoque metodológico combina la precisión académica con herramientas prácticas de comunicación, adaptando cada sesión a los objetivos reales de tu entorno laboral o académico. No te enseño a aprobar exámenes; te enseño a liderar la conversación en cualquier rincón del mundo.
+                    </p>
+                    
+                    <!-- Core Values Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
+                        <div class="flex space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-hueso rounded-xl flex items-center justify-center text-mostaza">
+                                <i data-lucide="target" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-cafe-oscuro uppercase tracking-wide">Foco de Alto Impacto</h4>
+                                <p class="text-sm text-cafe mt-1 font-light">Clases alineadas estrictamente con tus objetivos específicos.</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-hueso rounded-xl flex items-center justify-center text-mostaza">
+                                <i data-lucide="smile" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-cafe-oscuro uppercase tracking-wide">Entorno Seguro de Práctica</h4>
+                                <p class="text-sm text-cafe mt-1 font-light">Elimina el miedo al error lingüístico desde la primera sesión.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="portafolio" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto bg-navy text-background rounded-3xl p-12 md:p-20">
-            <h3 class="text-mustard font-semibold uppercase tracking-widest mb-4">Casos de Éxito</h3>
-            <h4 class="text-3xl md:text-5xl font-bold mb-12">Resultados que transforman vidas.</h4>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <p class="text-2xl italic leading-relaxed mb-6">"Gracias a la metodología de Aída, pude obtener la certificación B2 en tiempo récord y conseguir la posición que buscaba en el extranjero."</p>
-                    <span class="font-bold">— Carlos Méndez, Software Engineer</span>
+    <!-- Servicios Section (3 cards) -->
+    <section id="servicios" class="py-24 md:py-32 bg-hueso fade-in-section">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <!-- Header section with centered spacing -->
+            <div class="text-center max-w-2xl mx-auto space-y-6 mb-20">
+                <span class="text-xs uppercase tracking-widest text-mostaza font-semibold">Programas Exclusivos</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-cafe-oscuro font-light">
+                    Servicios adaptados a tu camino de aprendizaje
+                </h2>
+                <div class="w-16 h-[2px] bg-mostaza mx-auto"></div>
+                <p class="text-cafe font-light">Sesiones diseñadas metodológicamente para optimizar tus tiempos y maximizar la retención.</p>
+            </div>
+
+            <!-- 3 Service Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <!-- Card 1 -->
+                <div class="bg-hueso-claro border border-cafe/5 p-8 md:p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 transform hover:translate-y-[-8px] flex flex-col justify-between group">
+                    <div class="space-y-6">
+                        <div class="w-12 h-12 bg-mostaza/10 rounded-2xl flex items-center justify-center text-mostaza group-hover:bg-mostaza group-hover:text-hueso-claro transition-all duration-300">
+                            <i data-lucide="briefcase" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-cafe-oscuro font-medium">Executive English</h3>
+                        <p class="text-cafe text-sm leading-relaxed font-light">
+                            Diseñado para líderes de negocios y corporativos. Enfocado en oratoria, pitch de negocios, negociaciones de alto nivel y redacción ejecutiva fluida.
+                        </p>
+                    </div>
+                    <div class="pt-8 border-t border-cafe/15 mt-8 flex items-center justify-between">
+                        <span class="text-xs uppercase tracking-widest text-cafe font-semibold">1-on-1 o Equipos</span>
+                        <a href="#contacto" class="text-mostaza group-hover:text-mostaza-oscuro font-medium inline-flex items-center space-x-1 text-sm">
+                            <span>Saber más</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-2xl italic leading-relaxed mb-6">"Su enfoque práctico y paciente me ayudó a superar mis bloqueos al hablar. ¡Ahora dirijo reuniones en inglés sin miedo!"</p>
-                    <span class="font-bold">— Lucía Fernández, Marketing Manager</span>
+
+                <!-- Card 2 (Highlight/Mostaza Outline) -->
+                <div class="bg-cafe-oscuro text-hueso p-8 md:p-10 rounded-2xl shadow-xl flex flex-col justify-between transform hover:translate-y-[-8px] transition-all duration-500 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-mostaza/20 rounded-full blur-2xl pointer-events-none"></div>
+                    
+                    <div class="space-y-6">
+                        <div class="w-12 h-12 bg-mostaza rounded-2xl flex items-center justify-center text-cafe-oscuro font-bold">
+                            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-mostaza font-bold bg-mostaza/10 px-2 py-1 rounded-md">Certificaciones Oficiales</span>
+                            <h3 class="font-serif text-2xl text-hueso font-medium mt-2">Exam Preparation</h3>
+                        </div>
+                        <p class="text-hueso/80 text-sm leading-relaxed font-light">
+                            Alineación estratégica para la aprobación de exámenes estandarizados internacionales como TOEFL, IELTS y Cambridge. Técnicas de manejo del tiempo.
+                        </p>
+                    </div>
+                    <div class="pt-8 border-t border-hueso/10 mt-8 flex items-center justify-between">
+                        <span class="text-xs uppercase tracking-widest text-mostaza font-semibold">Garantía de Método</span>
+                        <a href="#contacto" class="text-mostaza hover:text-mostaza-claro font-medium inline-flex items-center space-x-1 text-sm">
+                            <span>Saber más</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-hueso-claro border border-cafe/5 p-8 md:p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 transform hover:translate-y-[-8px] flex flex-col justify-between group">
+                    <div class="space-y-6">
+                        <div class="w-12 h-12 bg-mostaza/10 rounded-2xl flex items-center justify-center text-mostaza group-hover:bg-mostaza group-hover:text-hueso-claro transition-all duration-300">
+                            <i data-lucide="message-square" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-cafe-oscuro font-medium">Conversación Fluida</h3>
+                        <p class="text-cafe text-sm leading-relaxed font-light">
+                            Mejora tu seguridad y reduce el acento limitante en debates cotidianos e intelectuales. Diseñado para quienes ya dominan la base pero sufren de parálisis de comunicación.
+                        </p>
+                    </div>
+                    <div class="pt-8 border-t border-cafe/15 mt-8 flex items-center justify-between">
+                        <span class="text-xs uppercase tracking-widest text-cafe font-semibold">Mentoría Activa</span>
+                        <a href="#contacto" class="text-mostaza group-hover:text-mostaza-oscuro font-medium inline-flex items-center space-x-1 text-sm">
+                            <span>Saber más</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contacto" class="py-20 px-6">
-        <div class="max-w-xl mx-auto">
-            <h3 class="text-center text-4xl font-bold mb-12">¿Empezamos?</h3>
-            <form class="space-y-6">
-                <input type="text" placeholder="Tu nombre" class="w-full p-4 bg-transparent border-b-2 border-navy/20 focus:border-mustard outline-none transition">
-                <input type="email" placeholder="Tu correo electrónico" class="w-full p-4 bg-transparent border-b-2 border-navy/20 focus:border-mustard outline-none transition">
-                <textarea placeholder="Cuéntame tu objetivo..." class="w-full p-4 bg-transparent border-b-2 border-navy/20 focus:border-mustard outline-none transition h-32"></textarea>
-                <button type="button" class="w-full bg-navy text-white py-4 rounded-lg hover:bg-mustard transition font-bold text-lg">Enviar mensaje</button>
-            </form>
+    <!-- Portafolio Section -->
+    <section id="portafolio" class="py-24 md:py-32 bg-hueso-claro fade-in-section">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div class="space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-mostaza font-semibold">Mis Casos de Éxito & Recursos</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-cafe-oscuro">El Portafolio del Progreso</h2>
+                    <div class="w-16 h-[2px] bg-mostaza"></div>
+                </div>
+                
+                <!-- Category Filter Controls -->
+                <div class="flex flex-wrap gap-2 md:gap-4 text-xs md:text-sm font-medium tracking-wide">
+                    <button class="portfolio-filter-btn px-5 py-2.5 rounded-full border border-cafe/15 text-cafe hover:border-cafe active-filter bg-cafe text-hueso transition-all duration-300" data-filter="all">
+                        Todos
+                    </button>
+                    <button class="portfolio-filter-btn px-5 py-2.5 rounded-full border border-cafe/15 text-cafe hover:border-cafe transition-all duration-300" data-filter="guias">
+                        Guías & Materiales
+                    </button>
+                    <button class="portfolio-filter-btn px-5 py-2.5 rounded-full border border-cafe/15 text-cafe hover:border-cafe transition-all duration-300" data-filter="casos">
+                        Casos Corporativos
+                    </button>
+                    <button class="portfolio-filter-btn px-5 py-2.5 rounded-full border border-cafe/15 text-cafe hover:border-cafe transition-all duration-300" data-filter="talleres">
+                        Talleres Dictados
+                    </button>
+                </div>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-container">
+                <!-- Project 1: Guías & Materiales -->
+                <div class="portfolio-item bg-hueso p-6 rounded-2xl border border-cafe/5 shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between group" data-category="guias">
+                    <div>
+                        <div class="overflow-hidden rounded-xl bg-cafe/5 h-48 flex items-center justify-center relative mb-6">
+                            <i data-lucide="book-open-check" class="w-16 h-16 text-cafe-claro opacity-50 group-hover:scale-110 transition-transform duration-500"></i>
+                            <span class="absolute top-3 right-3 bg-mostaza text-cafe-oscuro text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full">Recurso Gratuito</span>
+                        </div>
+                        <h4 class="font-serif text-xl text-cafe-oscuro font-medium">Guía de Phrasal Verbs Ejecutivos</h4>
+                        <p class="text-cafe text-sm mt-2 leading-relaxed font-light">Compilación interactiva de los modismos más utilizados en reuniones internacionales en Silicon Valley.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-cafe/10 flex items-center justify-between">
+                        <span class="text-xs text-cafe-claro font-mono">1.2k Descargas</span>
+                        <button class="text-mostaza font-semibold text-xs uppercase tracking-wider inline-flex items-center space-x-1 group-hover:text-mostaza-oscuro">
+                            <span>Descargar</span> <i data-lucide="download" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Casos Corporativos -->
+                <div class="portfolio-item bg-hueso p-6 rounded-2xl border border-cafe/5 shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between group" data-category="casos">
+                    <div>
+                        <div class="overflow-hidden rounded-xl bg-cafe/5 h-48 flex items-center justify-center relative mb-6">
+                            <i data-lucide="users" class="w-16 h-16 text-cafe-claro opacity-50 group-hover:scale-110 transition-transform duration-500"></i>
+                            <span class="absolute top-3 right-3 bg-cafe text-hueso text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full">Caso de Éxito</span>
+                        </div>
+                        <h4 class="font-serif text-xl text-cafe-oscuro font-medium">Global Pitching - Tech Startup</h4>
+                        <p class="text-cafe text-sm mt-2 leading-relaxed font-light">Preparación integral de un equipo de ingenieros para ronda de inversión en Londres. Lograron levantar $2M USD.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-cafe/10 flex items-center justify-between">
+                        <span class="text-xs text-cafe-claro font-mono">10 Clases</span>
+                        <span class="text-xs text-mostaza font-bold">100% Fluidez</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: Talleres Dictados -->
+                <div class="portfolio-item bg-hueso p-6 rounded-2xl border border-cafe/5 shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between group" data-category="talleres">
+                    <div>
+                        <div class="overflow-hidden rounded-xl bg-cafe/5 h-48 flex items-center justify-center relative mb-6">
+                            <i data-lucide="mic" class="w-16 h-16 text-cafe-claro opacity-50 group-hover:scale-110 transition-transform duration-500"></i>
+                            <span class="absolute top-3 right-3 bg-[#E5A93B]/20 text-mostaza-oscuro text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full">Taller Privado</span>
+                        </div>
+                        <h4 class="font-serif text-xl text-cafe-oscuro font-medium">Oratoria sin Barreras en la CDMX</h4>
+                        <p class="text-cafe text-sm mt-2 leading-relaxed font-light">Taller presencial para 50 ponentes de conferencias internacionales. Dinámicas de entonación y lenguaje corporal.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-cafe/10 flex items-center justify-between">
+                        <span class="text-xs text-cafe-claro font-mono">50 Participantes</span>
+                        <span class="text-xs text-mostaza font-bold">Evaluación 5/5</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: Guías & Materiales -->
+                <div class="portfolio-item bg-hueso p-6 rounded-2xl border border-cafe/5 shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between group" data-category="guias">
+                    <div>
+                        <div class="overflow-hidden rounded-xl bg-cafe/5 h-48 flex items-center justify-center relative mb-6">
+                            <i data-lucide="video" class="w-16 h-16 text-cafe-claro opacity-50 group-hover:scale-110 transition-transform duration-500"></i>
+                            <span class="absolute top-3 right-3 bg-mostaza text-cafe-oscuro text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full">Video Clase</span>
+                        </div>
+                        <h4 class="font-serif text-xl text-cafe-oscuro font-medium">Mini-curso: Negociación en Inglés</h4>
+                        <p class="text-cafe text-sm mt-2 leading-relaxed font-light">Herramientas audiovisuales para reaccionar asertivamente a objeciones y contrapropuestas hostiles.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-cafe/10 flex items-center justify-between">
+                        <span class="text-xs text-cafe-claro font-mono">Acceso Abierto</span>
+                        <button class="text-mostaza font-semibold text-xs uppercase tracking-wider inline-flex items-center space-x-1 group-hover:text-mostaza-oscuro">
+                            <span>Ver Curso</span> <i data-lucide="play" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 5: Casos Corporativos -->
+                <div class="portfolio-item bg-hueso p-6 rounded-2xl border border-cafe/5 shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between group" data-category="casos">
+                    <div>
+                        <div class="overflow-hidden rounded-xl bg-cafe/5 h-48 flex items-center justify-center relative mb-6">
+                            <i data-lucide="network" class="w-16 h-16 text-cafe-claro opacity-50 group-hover:scale-110 transition-transform duration-500"></i>
+                            <span class="absolute top-3 right-3 bg-cafe text-hueso text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full">Caso de Éxito</span>
+                        </div>
+                        <h4 class="font-serif text-xl text-cafe-oscuro font-medium">Inmersión para Médicos Especialistas</h4>
+                        <p class="text-cafe text-sm mt-2 leading-relaxed font-light">Capacitación intensiva en inglés médico para ponencias científicas y papers de investigación clínica.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-cafe/10 flex items-center justify-between">
+                        <span class="text-xs text-cafe-claro font-mono">4 Especialistas</span>
+                        <span class="text-xs text-mostaza font-bold">Publicado con Éxito</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="py-10 text-center border-t border-navy/10">
-        <p class="text-navy/50">© 2026 Aída Rogell. Todos los derechos reservados.</p>
+    <!-- Testimonios Section -->
+    <section id="testimonios" class="py-24 md:py-32 bg-hueso overflow-hidden fade-in-section">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative">
+            <div class="text-center max-w-2xl mx-auto space-y-6 mb-20">
+                <span class="text-xs uppercase tracking-widest text-mostaza font-semibold">Resultados Medibles</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-cafe-oscuro font-light">Voces que transformaron su futuro</h2>
+                <div class="w-16 h-[2px] bg-mostaza mx-auto"></div>
+            </div>
+
+            <!-- Carousel Wrapper -->
+            <div class="relative max-w-4xl mx-auto">
+                <div class="overflow-hidden">
+                    <div class="flex transition-transform duration-500 ease-in-out" id="testimonial-slider" style="transform: translateX(0%);">
+                        <!-- Testimonial 1 -->
+                        <div class="w-full flex-shrink-0 px-4 md:px-12">
+                            <div class="bg-hueso-claro p-8 md:p-12 rounded-3xl border border-cafe/5 shadow-md flex flex-col justify-between space-y-6 relative">
+                                <span class="absolute top-8 right-8 font-serif text-8xl text-mostaza/20 pointer-events-none">“</span>
+                                <div class="flex text-mostaza space-x-1">
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                </div>
+                                <p class="font-serif text-lg md:text-2xl text-cafe-oscuro italic leading-relaxed font-light">
+                                    "La paciencia y el método refinado de Aída me permitieron desbloquear mi inglés en solo tres meses. Hoy puedo entablar conversaciones estratégicas con directivos de todo el mundo sin titubear."
+                                </p>
+                                <div class="flex items-center space-x-4 pt-4 border-t border-cafe/10">
+                                    <div class="w-12 h-12 rounded-full bg-cafe-claro/20 flex items-center justify-center text-cafe font-serif font-bold text-lg">
+                                        RE
+                                    </div>
+                                    <div>
+                                        <h5 class="text-sm font-bold text-cafe-oscuro uppercase tracking-wide">Ramiro Escalante</h5>
+                                        <p class="text-xs text-cafe-claro">Director de Operaciones, Tech Logistics</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div class="w-full flex-shrink-0 px-4 md:px-12">
+                            <div class="bg-hueso-claro p-8 md:p-12 rounded-3xl border border-cafe/5 shadow-md flex flex-col justify-between space-y-6 relative">
+                                <span class="absolute top-8 right-8 font-serif text-8xl text-mostaza/20 pointer-events-none">“</span>
+                                <div class="flex text-mostaza space-x-1">
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                </div>
+                                <p class="font-serif text-lg md:text-2xl text-cafe-oscuro italic leading-relaxed font-light">
+                                    "No solo enseña gramática, te ayuda a estructurar tu pensamiento en inglés. Mis presentaciones ante el comité médico europeo cambiaron radicalmente después de sus sesiones de mentoría."
+                                </p>
+                                <div class="flex items-center space-x-4 pt-4 border-t border-cafe/10">
+                                    <div class="w-12 h-12 rounded-full bg-cafe-claro/20 flex items-center justify-center text-cafe font-serif font-bold text-lg">
+                                        DM
+                                    </div>
+                                    <div>
+                                        <h5 class="text-sm font-bold text-cafe-oscuro uppercase tracking-wide">Dra. Marta Villalobos</h5>
+                                        <p class="text-xs text-cafe-claro">Neurocirujana Investigadora</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div class="w-full flex-shrink-0 px-4 md:px-12">
+                            <div class="bg-hueso-claro p-8 md:p-12 rounded-3xl border border-cafe/5 shadow-md flex flex-col justify-between space-y-6 relative">
+                                <span class="absolute top-8 right-8 font-serif text-8xl text-mostaza/20 pointer-events-none">“</span>
+                                <div class="flex text-mostaza space-x-1">
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                </div>
+                                <p class="font-serif text-lg md:text-2xl text-cafe-oscuro italic leading-relaxed font-light">
+                                    "El programa de preparación para el TOEFL es impecable. Cada consejo y simulacro fue crucial para lograr los 115 puntos que necesitaba para mi maestría en Boston."
+                                </p>
+                                <div class="flex items-center space-x-4 pt-4 border-t border-cafe/10">
+                                    <div class="w-12 h-12 rounded-full bg-cafe-claro/20 flex items-center justify-center text-cafe font-serif font-bold text-lg">
+                                        AH
+                                    </div>
+                                    <div>
+                                        <h5 class="text-sm font-bold text-cafe-oscuro uppercase tracking-wide">Alejandro Herrera</h5>
+                                        <p class="text-xs text-cafe-claro">Estudiante de MBA, Harvard Boston</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Navigation -->
+                <div class="flex items-center justify-center space-x-8 mt-12">
+                    <button class="p-3 rounded-full border border-cafe/20 text-cafe-oscuro hover:bg-cafe hover:text-hueso transition-all duration-300" id="prev-testimonial" aria-label="Anterior">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <!-- Indicators dots -->
+                    <div class="flex space-x-2" id="testimonial-dots">
+                        <span class="w-2.5 h-2.5 rounded-full bg-mostaza cursor-pointer dot-indicator" data-index="0"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-cafe/20 cursor-pointer dot-indicator" data-index="1"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-cafe/20 cursor-pointer dot-indicator" data-index="2"></span>
+                    </div>
+                    <button class="p-3 rounded-full border border-cafe/20 text-cafe-oscuro hover:bg-cafe hover:text-hueso transition-all duration-300" id="next-testimonial" aria-label="Siguiente">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto Section -->
+    <section id="contacto" class="py-24 md:py-32 bg-hueso-claro fade-in-section">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+                <!-- Left Details / Contact Info -->
+                <div class="lg:col-span-5 flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <span class="text-xs uppercase tracking-widest text-mostaza font-semibold">Conectemos Hoy</span>
+                        <h2 class="font-serif text-4xl md:text-5xl text-cafe-oscuro">¿Comenzamos el viaje juntos?</h2>
+                        <div class="w-16 h-[2px] bg-mostaza"></div>
+                        <p class="text-cafe font-light leading-relaxed">
+                            Resuelve tus dudas o solicita una videollamada de diagnóstico sin costo (15 min). Estoy aquí para ayudarte a diseñar la mejor ruta hacia tu bilingüismo avanzado.
+                        </p>
+                    </div>
+
+                    <div class="space-y-8 mt-12">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-hueso rounded-xl flex items-center justify-center text-mostaza shadow-sm">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs uppercase tracking-widest text-cafe-claro font-semibold">Correo Electrónico</h4>
+                                <a href="mailto:aida.rogell@gmail.com" class="text-cafe-oscuro font-medium hover:underline text-lg">aida.rogell@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-hueso rounded-xl flex items-center justify-center text-mostaza shadow-sm">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs uppercase tracking-widest text-cafe-claro font-semibold">Ubicación de Mentoría</h4>
+                                <p class="text-cafe-oscuro font-medium text-lg">Sesiones Online (Global) & CDMX Presencial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Elegant Form -->
+                <div class="lg:col-span-7 bg-hueso border border-cafe/5 p-8 md:p-12 rounded-3xl shadow-xl relative">
+                    <!-- Message Toast (Hidden by default) -->
+                    <div id="form-toast" class="hidden absolute inset-0 bg-hueso rounded-3xl z-20 flex flex-col items-center justify-center p-8 text-center space-y-4 transition-all duration-300">
+                        <div class="w-16 h-16 bg-mostaza/20 text-mostaza rounded-full flex items-center justify-center mx-auto">
+                            <i data-lucide="check-circle" class="w-10 h-10"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-cafe-oscuro">¡Mensaje Recibido!</h3>
+                        <p class="text-cafe text-sm max-w-md mx-auto font-light">Gracias por tu interés, Aída Rogell se comunicará contigo en un lapso no mayor a 24 horas hábiles.</p>
+                        <button onclick="resetContactForm()" class="bg-cafe text-hueso px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-mostaza hover:text-cafe-oscuro transition-all duration-300">Enviar otro mensaje</button>
+                    </div>
+
+                    <form id="contact-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="name" class="block text-xs uppercase tracking-widest font-bold text-cafe">Nombre Completo *</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 bg-hueso-claro border border-cafe/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-mostaza/50 focus:border-mostaza text-cafe-oscuro font-light placeholder:text-cafe-claro/50" placeholder="Ej. Juan Pérez">
+                            </div>
+                            <div class="space-y-2">
+                                <label for="email" class="block text-xs uppercase tracking-widest font-bold text-cafe">Email de contacto *</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 bg-hueso-claro border border-cafe/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-mostaza/50 focus:border-mostaza text-cafe-oscuro font-light placeholder:text-cafe-claro/50" placeholder="Ej. juan@empresa.com">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="interest" class="block text-xs uppercase tracking-widest font-bold text-cafe">Programa de Interés *</label>
+                            <select id="interest" required class="w-full px-4 py-3 bg-hueso-claro border border-cafe/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-mostaza/50 focus:border-mostaza text-cafe-oscuro font-light">
+                                <option value="" disabled selected>Selecciona un programa</option>
+                                <option value="executive">Executive English Program</option>
+                                <option value="exams">Prep. de Exámenes (IELTS/TOEFL)</option>
+                                <option value="conversation">Conversación de Alto Impacto</option>
+                                <option value="other">Mentoría personalizada / Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="message" class="block text-xs uppercase tracking-widest font-bold text-cafe">Detalles de tu Objetivo *</label>
+                            <textarea id="message" required rows="4" class="w-full px-4 py-3 bg-hueso-claro border border-cafe/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-mostaza/50 focus:border-mostaza text-cafe-oscuro font-light placeholder:text-cafe-claro/50" placeholder="Cuéntame sobre tu nivel actual y qué buscas lograr..."></textarea>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full group inline-flex items-center justify-center space-x-2 bg-cafe hover:bg-mostaza text-hueso hover:text-cafe-oscuro font-semibold py-4 rounded-xl transition-all duration-300 transform active:scale-95 shadow-md">
+                                <span>Enviar solicitud de diagnóstico</span>
+                                <i data-lucide="send" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-cafe-oscuro text-hueso-oscuro py-16 border-t border-cafe/20">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-hueso/10">
+                <!-- Branding column -->
+                <div class="md:col-span-2 space-y-4">
+                    <span class="font-serif text-2xl tracking-wide text-hueso block">Aída Rogell Flores</span>
+                    <span class="text-xs uppercase tracking-widest text-mostaza font-semibold block">English Educator</span>
+                    <p class="text-sm text-hueso/60 max-w-sm font-light mt-4 leading-relaxed">
+                        Comprometidos con el desarrollo de competencias comunicativas extraordinarias para el panorama profesional globalizado.
+                    </p>
+                </div>
+
+                <!-- Navigation Quick links -->
+                <div class="space-y-4">
+                    <h4 class="text-xs uppercase tracking-widest text-mostaza font-bold">Mapa del Sitio</h4>
+                    <ul class="space-y-2 text-sm text-hueso/80 font-light">
+                        <li><a href="#sobre-mi" class="hover:text-mostaza transition-colors">Sobre mí</a></li>
+                        <li><a href="#servicios" class="hover:text-mostaza transition-colors">Servicios</a></li>
+                        <li><a href="#portafolio" class="hover:text-mostaza transition-colors">Portafolio</a></li>
+                        <li><a href="#testimonios" class="hover:text-mostaza transition-colors">Testimonios</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social and Legal -->
+                <div class="space-y-4">
+                    <h4 class="text-xs uppercase tracking-widest text-mostaza font-bold">Contacto Directo</h4>
+                    <p class="text-sm text-hueso/80 font-light">¿Listo para comenzar hoy?</p>
+                    <div class="flex space-x-4 pt-2">
+                        <a href="https://linkedin.com" target="_blank" class="p-2 bg-hueso/10 rounded-full text-hueso hover:bg-mostaza hover:text-cafe-oscuro transition-all" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="p-2 bg-hueso/10 rounded-full text-hueso hover:bg-mostaza hover:text-cafe-oscuro transition-all" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" class="p-2 bg-hueso/10 rounded-full text-hueso hover:bg-mostaza hover:text-cafe-oscuro transition-all" aria-label="YouTube">
+                            <i data-lucide="youtube" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright & terms -->
+            <div class="flex flex-col sm:flex-row items-center justify-between pt-8 text-xs text-hueso/50 font-light gap-4">
+                <p>&copy; 2026 Aída Rogell Flores. Todos los derechos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-mostaza transition-colors">Políticas de Privacidad</a>
+                    <a href="#" class="hover:text-mostaza transition-colors">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Scripts & Interactivity -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Sticky Header scroll styling effect
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md', 'bg-hueso', 'h-16');
+                header.classList.remove('h-20', 'bg-hueso/90');
+            } else {
+                header.classList.remove('shadow-md', 'h-16', 'bg-hueso');
+                header.classList.add('h-20', 'bg-hueso/90');
+            }
+        });
+
+        // 2. Mobile Menu Navigation
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+                lucide.createIcons();
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            }
+        });
+
+        // Close mobile menu when link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // 3. Portfolio interactive filter system
+        const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active classes
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-cafe', 'text-hueso');
+                    btn.classList.add('text-cafe');
+                });
+                // Add active classes to current
+                button.classList.add('bg-cafe', 'text-hueso');
+                button.classList.remove('text-cafe');
+
+                const selectedCategory = button.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    if (selectedCategory === 'all' || selectedCategory === itemCategory) {
+                        item.style.display = 'flex';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // 4. Testimonials carousel navigation logic
+        const slider = document.getElementById('testimonial-slider');
+        const dots = document.querySelectorAll('.dot-indicator');
+        const prevBtn = document.getElementById('prev-testimonial');
+        const nextBtn = document.getElementById('next-testimonial');
+        let currentSlide = 0;
+        const totalSlides = dots.length;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('bg-mostaza');
+                    dot.classList.remove('bg-cafe/20');
+                } else {
+                    dot.classList.remove('bg-mostaza');
+                    dot.classList.add('bg-cafe/20');
+                }
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                currentSlide = parseInt(e.target.getAttribute('data-index'));
+                updateSlider();
+            });
+        });
+
+        // 5. Contact Form simulation (No standard Alert used)
+        const formToast = document.getElementById('form-toast');
+        const contactForm = document.getElementById('contact-form');
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            // Validate form input here if needed, then show simulated success Toast
+            formToast.classList.remove('hidden');
+            formToast.classList.add('flex');
+        }
+
+        function resetContactForm() {
+            contactForm.reset();
+            formToast.classList.add('hidden');
+            formToast.classList.remove('flex');
+        }
+
+        // 6. Intersection Observer for beautiful fade-in styling on scroll
+        const faders = document.querySelectorAll('.fade-in-section');
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
 </body>
 </html>
